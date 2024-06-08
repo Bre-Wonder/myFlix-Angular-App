@@ -25,12 +25,45 @@ export class FetchApiDataService {
     );
   }
 
+  // API call for user login endpoint
+  public userLogin(userDetails: any): Observable<any> {
+    console.log(userDetails);
+    return this.http.post(apiUrl + 'users', userDetails).pipe(
+    catchError(this.handleError)
+    );
+  }
+
+  // API get request for all movies
   getAllMovies(): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies', {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
+        })}).pipe(
+          map(this.extractResponseData),
+          catchError(this.handleError)
+        );
+  }
+
+  getMovieByTitle(title: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    return this.http.get(apiUrl + 'movies', title, {
+      headers: new HttpHeaders(
+        {
+          Authorization: 'Bearer' + token,
+        })}).pipe(
+          map(this.extractResponseData),
+          catchError(this.handleError)
+        );
+  }
+
+  getDirector(director: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    return this.http.get(apiUrl + 'movies', director, {
+      headers: new HttpHeaders(
+        {
+          Authorization: 'Bearer' + token,
         })}).pipe(
           map(this.extractResponseData),
           catchError(this.handleError)
