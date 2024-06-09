@@ -33,10 +33,10 @@ export class FetchApiDataService {
     );
   }
 
-  // API get request for all movies
+  // API get request endpoint for all movies
   getAllMovies(): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'movies', {
+    return this.http.get(apiUrl + '/movies', {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
@@ -46,9 +46,10 @@ export class FetchApiDataService {
         );
   }
 
-  getMovieByTitle(title: string): Observable<any> {
+  // API get request endpoint to select a movie by its title
+  getMovieByTitle(): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'movies', title, {
+    return this.http.get(apiUrl + '/movies/:movieTitle', {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer' + token,
@@ -58,9 +59,36 @@ export class FetchApiDataService {
         );
   }
 
-  getDirector(director: string): Observable<any> {
+  // API get request endpoint to find a director by their name
+  getDirector(): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'movies', director, {
+    return this.http.get(apiUrl + '/director/:directorName', {
+      headers: new HttpHeaders(
+        {
+          Authorization: 'Bearer' + token,
+        })}).pipe(
+          map(this.extractResponseData),
+          catchError(this.handleError)
+        );
+  }
+
+  // API get request endpoint to find movies listed in a certain genre
+  getGenre(): Observable<any> {
+    const token = localStorage.getItem('token');
+    return this.http.get(apiUrl + '/genre/:genreName', {
+      headers: new HttpHeaders(
+        {
+          Authorization: 'Bearer' + token,
+        })}).pipe(
+          map(this.extractResponseData),
+          catchError(this.handleError)
+        );
+  }
+
+   // API get request endpoint to find a user by their username
+   getUser(): Observable<any> {
+    const token = localStorage.getItem('token');
+    return this.http.get(apiUrl + '/users/:Username', {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer' + token,
