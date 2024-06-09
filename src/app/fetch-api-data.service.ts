@@ -47,9 +47,9 @@ export class FetchApiDataService {
   }
 
   // API get request endpoint to select a movie by its title
-  getMovieByTitle(): Observable<any> {
+  getMovieByTitle(movieTitle: string): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + '/movies/:movieTitle', {
+    return this.http.get(apiUrl + '/movies' + movieTitle, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer' + token,
@@ -60,9 +60,9 @@ export class FetchApiDataService {
   }
 
   // API get request endpoint to find a director by their name
-  getDirector(): Observable<any> {
+  getDirector(directorName: string): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + '/director/:directorName', {
+    return this.http.get(apiUrl + '/director' + directorName, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer' + token,
@@ -73,9 +73,9 @@ export class FetchApiDataService {
   }
 
   // API get request endpoint to find movies listed in a certain genre
-  getGenre(): Observable<any> {
+  getGenre(genreName: string): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + '/genre/:genreName', {
+    return this.http.get(apiUrl + '/genre' + genreName, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer' + token,
