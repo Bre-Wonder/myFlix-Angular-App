@@ -8,6 +8,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 
 //Disiplay notifications back to user
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { response } from 'express';
 
 @Component({
   selector: 'app-user-registration-form',
@@ -27,19 +28,21 @@ export class UserRegistrationFormComponent implements OnInit {
   ngOnInit(): void {
 }
 
-//Send the inputs from the form to the back end
-registerUser(): void {
-  this.fetchApiData.userRegistration(this.userData).subscribe((result) => {
-    //Come back later - the logic for successful user registration goes here!!
-    this.dialogRef.close();
-    this.snackBar.open(result, 'OK', {
-      duration: 2000
+  //Send the inputs from the form to the back end
+  registerUser(): void {
+    this.fetchApiData.userRegistration(this.userData).subscribe((response) => {
+      //Come back later - the logic for successful user registration goes here!!
+      this.dialogRef.close();
+      console.log(response);
+      this.snackBar.open('You Registered Successfully!', 'OK', {
+        duration: 2000
+      });
+    }, (response) => {
+      console.log(response);
+      this.snackBar.open(response, 'OK', { 
+        duration: 2000    
+      });
     });
-  }, (result) ={
-    this.snackBar.open(result, 'OK', { 
-      duration: 2000    
-    });
-  });
-}
+  }
 
 }
