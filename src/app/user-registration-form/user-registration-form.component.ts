@@ -8,7 +8,6 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 
 //Disiplay notifications back to user
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { response } from 'express';
 
 @Component({
   selector: 'app-user-registration-form',
