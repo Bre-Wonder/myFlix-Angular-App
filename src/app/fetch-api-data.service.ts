@@ -150,7 +150,7 @@ export class FetchApiDataService {
   // API delte request endpoint to remove a movie from a user's favorite list
   deleteFavoriteMovie(username: string, movieId: string): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.delete(apiUrl + '/users/' + username + '/movies/' + movieId, {}, {
+    return this.http.delete(apiUrl + '/users/' + username + '/movies/' + movieId, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
@@ -160,7 +160,7 @@ export class FetchApiDataService {
         );
   }
 
-    private extractResponseData(res: Response): any
+    private extractResponseData(res: any): any
   {
       const body = res;
       return body || { };
