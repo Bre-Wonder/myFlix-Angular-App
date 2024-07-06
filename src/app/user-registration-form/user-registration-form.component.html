@@ -14,6 +14,7 @@
          name="Username"
          required
         >
+        <mat-error *ngIf="userData.Username === ''">Username is required</mat-error>
      </mat-form-field>
       <mat-form-field>
         <input
@@ -24,6 +25,7 @@
         name="Password"
         required
         >
+        <mat-error *ngIf="userData.Password === ''">Password is required</mat-error>
      </mat-form-field>
      <mat-form-field>
         <input
@@ -34,6 +36,7 @@
         name="Email"
         required
         >
+        <mat-error *ngIf="userData.Email === ''">Email is required</mat-error>
      </mat-form-field>
      <mat-form-field>
         <input
@@ -44,6 +47,7 @@
         name="Birthday"
         required
         >
+        <mat-error *ngIf="userData.Birthday === ''">Birthday is required</mat-error>
       </mat-form-field>
     </form>
   </mat-card-content>
