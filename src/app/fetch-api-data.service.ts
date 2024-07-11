@@ -5,7 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 //Declaring api url that allow app to uses end points from client app API
-const apiUrl = 'https://bre-wonder-cinema-app-8704977a1a65.herokuapp.com' // hosted heroku api
+const apiUrl = 'https://bre-wonder-cinema-app-8704977a1a65.herokuapp.com/movies' // hosted heroku api
 @Injectable({
   providedIn: 'root'
 })
