@@ -29,5 +29,11 @@ openUserLoginDialog(): void {
   });
 }
 
+//function that opens up dialog when movie card is rendered
+openMoviesDialog(): void {
+  this.dialog.open(MovieCardComponent, {
+    width: '500px'
+  });
+}
 
 }
