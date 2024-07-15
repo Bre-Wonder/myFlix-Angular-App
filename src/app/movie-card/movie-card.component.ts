@@ -4,7 +4,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
-  styleUrl: ['./movie-card.component.scss']
+  styleUrls: ['./movie-card.component.scss']
 })
 export class MovieCardComponent {
   movies: any[] = [];
