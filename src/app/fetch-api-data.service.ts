@@ -10,6 +10,7 @@ const apiUrl = 'https://bre-wonder-cinema-app-8704977a1a65.herokuapp.com/movies'
   providedIn: 'root'
 })
 export class FetchApiDataService {
+  // adding dummy change to test if api is working
 
   // Inject the HttpClient module to the constructor params
   //This will provide HttpClient tot he entire class, making it available via this.htt;
