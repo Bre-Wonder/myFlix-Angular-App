@@ -19,10 +19,12 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { UserProfileViewComponent } from './user-profile-view/user-profile-view.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
+  { path: 'profile', component: UserProfileViewComponent},
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix'},
 ];
 
@@ -32,7 +34,8 @@ const appRoutes: Routes = [
     UserRegistrationFormComponent,
     UserLoginFormComponent,
     MovieCardComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    UserProfileViewComponent
   ],
   imports: [
     BrowserModule,
