@@ -1,0 +1,11 @@
+.movie-card {
+    flex: 1 1 calc(20% - 16px);
+    box-sizing: border-box;
+    margin: 8px;
+  }
+  
+  .movie-image {
+      width: 96%;
+      height: 200px;
+      object-fit: cover;
+  }
