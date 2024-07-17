@@ -2,10 +2,12 @@
     flex: 1 1 calc(20% - 16px);
     box-sizing: border-box;
     margin: 8px;
+    background-color:#D9D9D9;
   }
   
   .movie-image {
-      width: 96%;
-      height: 200px;
+      width: 100%;
+      margin-top: 4px;
+      height: 400px;
       object-fit: cover;
   }
