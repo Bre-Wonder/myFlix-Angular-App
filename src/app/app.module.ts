@@ -23,6 +23,8 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { UserProfileViewComponent } from './user-profile-view/user-profile-view.component';
 import { MovieSnapshotComponent } from './movie-snapshot/movie-snapshot.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { DirectorInfoComponent } from './director-info/director-info.component';
+import { GenreInfoComponent } from './genre-info/genre-info.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -40,7 +42,9 @@ const appRoutes: Routes = [
     WelcomePageComponent,
     UserProfileViewComponent,
     MovieSnapshotComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    DirectorInfoComponent,
+    GenreInfoComponent
   ],
   imports: [
     BrowserModule,
