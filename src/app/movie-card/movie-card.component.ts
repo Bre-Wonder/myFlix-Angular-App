@@ -35,7 +35,7 @@ openMovieSnapshotDialog(movieTitle: string, description: string): void {
       description: description
     },
   //Assigning the dialog a width
-  width: '400px'
+  width: '600px'
   });
 }
 
