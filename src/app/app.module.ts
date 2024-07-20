@@ -25,6 +25,7 @@ import { MovieSnapshotComponent } from './movie-snapshot/movie-snapshot.componen
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { DirectorInfoComponent } from './director-info/director-info.component';
 import { GenreInfoComponent } from './genre-info/genre-info.component';
+import { MovieViewComponent } from './movie-view/movie-view.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -44,7 +45,8 @@ const appRoutes: Routes = [
     MovieSnapshotComponent,
     NavigationBarComponent,
     DirectorInfoComponent,
-    GenreInfoComponent
+    GenreInfoComponent,
+    MovieViewComponent
   ],
   imports: [
     BrowserModule,

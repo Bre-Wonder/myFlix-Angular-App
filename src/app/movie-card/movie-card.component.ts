@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
+  genre: any = "";
 
   constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog) { }
 
@@ -58,7 +59,7 @@ openDirectorInfoDialog(
 }
 
 // Opens the dialog for the genre of the movie
-openGenreInfoDialog(genreName: string, genredescription: string): void {
+openGenreInfoDialog(genre: string, description: string): void {
   this.dialog.open(GenreInfoComponent, {
     data: {
       genre: genre,
