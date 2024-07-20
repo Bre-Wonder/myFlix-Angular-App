@@ -1,1 +1,25 @@
-<p>director-info works!</p>
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Director: {{data.director}}</mat-card-title>
+    </mat-card-header> 
+    <mat-card-content>
+      <p>Bio: {{data.bio}}</p>
+    </mat-card-content>
+    <mat-card-content>
+        <p>Birth Year: {{data.birth}}</p>
+      </mat-card-content>
+      <mat-card-content>
+        <p>Died: {{data.death}}</p>
+      </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="dialogRef.close()"
+      >
+        Close
+      </button>
+    </mat-card-actions>  
+  
+  
+  </mat-card>

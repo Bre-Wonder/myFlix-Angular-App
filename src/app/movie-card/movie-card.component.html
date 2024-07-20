@@ -16,6 +16,7 @@
         </button>
         <button
           mat-button
+          (click)="openDirectorInfoDialog(movie.director, movie.bio, movie.birth, movie.death)"
           color="primary"
           class="sub-button"
         >

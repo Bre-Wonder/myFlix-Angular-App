@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MovieSnapshotComponent } from '../movie-snapshot/movie-snapshot.component';
+import { DirectorInfoComponent } from '../director-info/director-info.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -10,8 +11,6 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
-  description: any = "";
-
 
   constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog) { }
 
@@ -37,6 +36,24 @@ openMovieSnapshotDialog(movieTitle: string, description: string): void {
   //Assigning the dialog a width
   width: '600px'
   });
+}
+
+// Opens the dialog about information for the director
+openDirectorInfoDialog(
+  director: string,
+  bio: string,
+  birth: string,
+  death: string): void {
+    this.dialog.open(DirectorInfoComponent, {
+      data: {
+        director: director,
+        bio: bio,
+        birth: birth,
+        death: death,
+      },
+    //Assigning the dialog a width
+    width: '600px'
+    });
 }
 
 }
