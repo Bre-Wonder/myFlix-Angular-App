@@ -13,7 +13,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 
@@ -32,6 +32,7 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { DirectorInfoComponent } from './director-info/director-info.component';
 import { GenreInfoComponent } from './genre-info/genre-info.component';
 import { MovieViewComponent } from './movie-view/movie-view.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -52,7 +53,8 @@ const appRoutes: Routes = [
     NavigationBarComponent,
     DirectorInfoComponent,
     GenreInfoComponent,
-    MovieViewComponent
+    MovieViewComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,

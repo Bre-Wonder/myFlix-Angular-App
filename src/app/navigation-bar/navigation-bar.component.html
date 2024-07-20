@@ -6,10 +6,10 @@
 </mat-toolbar>
 
 <mat-menu #menu="matMenu">
-  <button mat-menu-item>
+  <button mat-menu-item [routerLink]="['/movies']">
     <span>Movies</span>
   </button>
-  <button mat-menu-item>
+  <button mat-menu-item [routerLink]="['/profile']">
     <span>Profile</span>
   </button>
   <button mat-menu-item>
