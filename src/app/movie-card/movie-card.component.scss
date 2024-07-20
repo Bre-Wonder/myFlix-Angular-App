@@ -3,13 +3,17 @@
     box-sizing: border-box;
     margin: 8px;
     background-color:#D9D9D9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .movie-image {
-      width: 100%;
-      margin-top: 4px;
-      height: 400px;
-      object-fit: cover;
+    width: 90%;
+    margin: auto;
+    height: 400px; 
+    display: block;
+
   }
 
  
