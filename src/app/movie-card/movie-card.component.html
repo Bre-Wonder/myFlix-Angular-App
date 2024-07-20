@@ -2,8 +2,11 @@
   <mat-card *ngFor="let movie of movies; let i=index;" style="flex: 1 1 auto;" class="movie-card">
     <mat-grid-list cols="10">
       <mat-card-header>  
-        <mat-card-title>{{movie.Title}}</mat-card-title>
-          <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle>
+        <mat-card-title
+        style="margin-bottom: 10px;"
+        >
+        {{movie.Title}}
+        </mat-card-title>
       </mat-card-header>
       <mat-card-subtitle><img src={{movie.ImagePath}} class="movie-image"/></mat-card-subtitle>
       <mat-card-actions>
@@ -31,7 +34,11 @@
         >
         Summary
         </button>
-        <mat-icon>favorite_border</mat-icon>
+        <button
+          mat-button
+        >
+          <mat-icon>favorite_border</mat-icon>
+        </button>        
       </mat-card-actions>
     </mat-grid-list>
   </mat-card>
