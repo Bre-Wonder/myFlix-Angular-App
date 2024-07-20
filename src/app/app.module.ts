@@ -29,7 +29,7 @@ import { MovieViewComponent } from './movie-view/movie-view.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
-  { path: 'movies', component: MovieCardComponent },
+  { path: 'movies', component: MovieViewComponent },
   { path: 'profile', component: UserProfileViewComponent},
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix'},
 ];
