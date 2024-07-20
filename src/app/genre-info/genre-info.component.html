@@ -1,1 +1,19 @@
-<p>genre-info works!</p>
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Genre: {{ data.genre }}</mat-card-title>
+    </mat-card-header> 
+    <mat-card-content>
+      <p>Description: {{ data.description }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="dialogRef.close()"
+      >
+        Close
+      </button>
+    </mat-card-actions>  
+  
+  
+  </mat-card>

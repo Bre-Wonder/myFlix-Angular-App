@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MovieSnapshotComponent } from '../movie-snapshot/movie-snapshot.component';
 import { DirectorInfoComponent } from '../director-info/director-info.component';
+import { GenreInfoComponent } from '../genre-info/genre-info.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -54,6 +55,18 @@ openDirectorInfoDialog(
     //Assigning the dialog a width
     width: '600px'
     });
+}
+
+// Opens the dialog for the genre of the movie
+openGenreInfoDialog(genreName: string, genredescription: string): void {
+  this.dialog.open(GenreInfoComponent, {
+    data: {
+      genre: genre,
+      description: description
+    },
+  //Assigning the dialog a width
+  width: '600px'
+  });
 }
 
 }
