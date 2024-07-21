@@ -3,7 +3,7 @@
   <h1
   style="margin-left: 15px;"
   >
-    Welcome (INSERT USERNAME)!
+    Welcome USERNAME!
   </h1>
   <h3
   style="margin-left: 15px;"
@@ -17,6 +17,7 @@
   </h3>
   <button
   mat-raised-button
+  (click)="openUpdateUserDialog()"
   style="margin-right: 10px; margin-left: 15px;"
   color="primary"
   >
