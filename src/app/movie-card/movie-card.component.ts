@@ -46,6 +46,8 @@ openDirectorInfoDialog(
   bio: string,
   birth: string,
   death: string): void {
+    console.log("Did director data pass?");
+    console.log(director);
     this.dialog.open(DirectorInfoComponent, {
       data: {
         director: director,
