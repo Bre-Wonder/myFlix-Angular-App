@@ -46,8 +46,7 @@ openDirectorInfoDialog(
   bio: string,
   birth: string,
   death: string): void {
-    console.log("Did director data pass?");
-    console.log(director);
+    console.log(director, "Did director data pass?");
     this.dialog.open(DirectorInfoComponent, {
       data: {
         director: director,
@@ -70,6 +69,12 @@ openGenreInfoDialog(genre: string, description: string): void {
   //Assigning the dialog a width
   width: '600px'
   });
+}
+
+// Adds movie to users favorite list
+// This function needs to create a list attached to the user's token to then render a list in the user profile view
+addFavoriteMovie(): void {
+  console.log("movie successfully added to favorites");
 }
 
 }
