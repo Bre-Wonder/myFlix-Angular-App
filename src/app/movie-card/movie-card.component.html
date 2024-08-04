@@ -1,4 +1,4 @@
-<div style="display: flex;  gap: 16px;">
+<div style="display: flex; gap: 16px;">
   <mat-card *ngFor="let movie of movies; let i=index;" style="flex: 1 1 auto;" class="movie-card">
     <mat-grid-list cols="10">
       <mat-card-header>  
@@ -37,6 +37,7 @@
         <button
           mat-button
           matTooltip="Add Movie to Your Favorites"
+          (click)="addFavoriteMovie()"
         >
           <mat-icon>favorite_border</mat-icon>
         </button>        
