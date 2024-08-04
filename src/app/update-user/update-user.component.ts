@@ -15,13 +15,21 @@ export class UpdateUserComponent implements OnInit {
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UpdateUserComponent>,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    // public userData: {
+    //   Username: string;
+    //   Password: string;
+    //   Email: string;
+    //   Birthay: string;
+    // }
   ) { }
 
 
   ngOnInit(): void {
 
   }
+
+
 
   updateUser(): void {
     this.fetchApiData.updateUser(this.userData.Username, this.userData).subscribe((result) => {
@@ -37,3 +45,4 @@ export class UpdateUserComponent implements OnInit {
     });
   }
 }
+
