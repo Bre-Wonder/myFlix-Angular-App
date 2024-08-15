@@ -3,7 +3,7 @@
   <h1
   style="margin-left: 15px;"
   >
-    Welcome {{ user.Useranme }}!
+    Welcome {{ userData.Username }}!
   </h1>
   <h3
   style="margin-left: 15px;"
@@ -27,6 +27,7 @@
     mat-raised-button
     style="margin-right: 10px;"
     color="primary"
+    (click)="deleteUser()"
   >
   Delete
   </button>
