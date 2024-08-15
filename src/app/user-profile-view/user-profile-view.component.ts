@@ -10,7 +10,9 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 })
 export class UserProfileViewComponent implements OnInit{
 
-  user: any = {};
+  @Input() userData = { Username: 'TestUser', Password: '', Email: '', Birthday: '' };
+
+  // user: any = {};
 
   constructor(
     public dialog: MatDialog,
@@ -18,6 +20,7 @@ export class UserProfileViewComponent implements OnInit{
     ) { }
 
   ngOnInit(): void {
+    console.log("Init before get user");
     this.getUser();
   }
 
@@ -25,10 +28,18 @@ export class UserProfileViewComponent implements OnInit{
 
 //Come back to this function, it is not working...
   getUser(): void {
-    this.fetchApiData.getUser(this.user.Username).subscribe((resp: any) => {
-        this.user = resp;
-        console.log(this.user);
-        // return this.user;
+    const localStorageUser = localStorage.getItem('user');
+      console.log("Before");
+      console.log(localStorageUser, "I'm the object");
+      console.log("After");
+    // const user = JSON.parse(localStorageUser);
+    // this.userData.Username = user.Username;
+      console.log(this.userData.Username, "My Username");
+    
+    this.fetchApiData.getUser(this.userData.Username).subscribe((resp: any) => {
+        this.userData = resp;
+        console.log("I was called");
+        console.log(this.userData.Username);
       });
     }
    //Function opens up dialog when the update button is pressed in the user profile view
@@ -38,13 +49,9 @@ export class UserProfileViewComponent implements OnInit{
     });
   }
 
-}
+  //Delete User from Database
+  deleteUser(): void {
+    console.log('This button was pressed');
+  }
 
-//To use as a guide
-// @Inject(MAT_DIALOG_DATA) 
-//     public data: {
-//       director: string;
-//       bio: string;
-//       birth: string;
-//       death: string;
-//     }
+}
