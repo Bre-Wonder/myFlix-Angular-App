@@ -86,6 +86,7 @@ export class FetchApiDataService {
 
    // API get request endpoint to find a user by their username
    getUser(username: string): Observable<any> {
+    // const user = localStorage.getItem('user');
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + '/users/' + username, {
       headers: new HttpHeaders(
