@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UpdateUserComponent } from '../update-user/update-user.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile-view',
@@ -17,6 +18,7 @@ export class UserProfileViewComponent implements OnInit{
   constructor(
     public dialog: MatDialog,
     public fetchApiData: FetchApiDataService,
+    private router: Router,
     ) { }
 
   ngOnInit(): void {
@@ -65,9 +67,11 @@ export class UserProfileViewComponent implements OnInit{
     });
   }
 
-  //Delete User from Database
+  //Delete User from localStorage
   deleteUser(): void {
-    console.log('This button was pressed');
+    localStorage.removeItem('user');
+    console.log('User Deleted');
+    this.router.navigate(['welcome']);
   }
 
 }
