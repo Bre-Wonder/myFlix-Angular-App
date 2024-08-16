@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class UserProfileViewComponent implements OnInit{
 
-  @Input() userData = { Username: 'TestUser', Password: '', Email: '', Birthday: '' };
+  @Input() userData = { Username: 'Please Sign In', Password: '', Email: '', Birthday: '' };
 
   user: any = {};
 
