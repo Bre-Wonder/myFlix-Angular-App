@@ -12,7 +12,7 @@ export class UserProfileViewComponent implements OnInit{
 
   @Input() userData = { Username: 'TestUser', Password: '', Email: '', Birthday: '' };
 
-  // user: any = {};
+  user: any = {};
 
   constructor(
     public dialog: MatDialog,
@@ -28,20 +28,36 @@ export class UserProfileViewComponent implements OnInit{
 
 //Come back to this function, it is not working...
   getUser(): void {
+
+    //retrieved data from localStorage
     const localStorageUser = localStorage.getItem('user');
-      console.log("Before");
-      console.log(localStorageUser, "I'm the object");
-      console.log("After");
-    // const user = JSON.parse(localStorageUser);
-    // this.userData.Username = user.Username;
+
+    // since I am writing in Typescript, I need to have a check to make sure localStorageUser is not null
+    if(localStorageUser) {
+      console.log("Before", localStorageUser, "I'm the object");
+
+      //sets the JSON parsed object equal to variable "user"
+      const user = JSON.parse(localStorageUser);
+      console.log(user, "Parsed JSON Object");
+
+      // setting username from the parsed object to the "this.userData.Username"
+      this.userData.Username = user.Username;
       console.log(this.userData.Username, "My Username");
     
-    this.fetchApiData.getUser(this.userData.Username).subscribe((resp: any) => {
+      //collecting the user data from the API
+      this.fetchApiData.getUser(this.userData.Username).subscribe((resp: any) => {
         this.userData = resp;
-        console.log("I was called");
-        console.log(this.userData.Username);
+        console.log("I was called", this.userData.Username)
+      
       });
+    
+    } else {
+      // error handler
+      console.error('No data in localStorage found');
     }
+
+}
+    
    //Function opens up dialog when the update button is pressed in the user profile view
    openUpdateUserDialog(): void {
     this.dialog.open(UpdateUserComponent, {
