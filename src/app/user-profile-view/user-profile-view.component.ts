@@ -67,7 +67,7 @@ export class UserProfileViewComponent implements OnInit{
     });
   }
 
-  //Delete User from localStorage
+  //Delete User from localStorage - NOT WORKING CORRECTLY!!
   deleteUser(): void {
     localStorage.removeItem('user');
     console.log('User Deleted');
