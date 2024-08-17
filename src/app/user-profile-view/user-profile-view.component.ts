@@ -27,8 +27,6 @@ export class UserProfileViewComponent implements OnInit{
   }
 
   
-
-//Come back to this function, it is not working...
   getUser(): void {
 
     //retrieved data from localStorage
