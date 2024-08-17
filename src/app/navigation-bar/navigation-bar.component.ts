@@ -13,6 +13,7 @@ export class NavigationBarComponent {
 
   userLogout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     console.log('user successfully logged out');
     this.router.navigate(['welcome']);
 
