@@ -30,14 +30,15 @@ export class UserProfileViewComponent implements OnInit{
   getUser(): void {
 
     //retrieved data from localStorage
-    const localStorageUser = localStorage.getItem('user');
+    const user = JSON.parse(localStorage.getItem('user') as string);
+
 
     // since I am writing in Typescript, I need to have a check to make sure localStorageUser is not null
-    if(localStorageUser) {
-      console.log("Before", localStorageUser, "I'm the object");
+    if(user) {
+      // console.log("Before", localStorageUser, "I'm the object");
 
       //sets the JSON parsed object equal to variable "user"
-      const user = JSON.parse(localStorageUser);
+      
       console.log(user, "Parsed JSON Object");
 
       // setting username from the parsed object to the "this.userData.Username"
