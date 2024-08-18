@@ -66,6 +66,7 @@ export class UserProfileViewComponent implements OnInit{
 
   //Delete User from localStorage - NOT WORKING CORRECTLY - needs to come from the fetchApiData file
   deleteUser(): void {
+    console.log('Delete Button was pressed');
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     console.log('User Cleared from localStorage');
