@@ -3,6 +3,7 @@ import { UpdateUserComponent } from '../update-user/update-user.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user-profile-view',
@@ -18,7 +19,9 @@ export class UserProfileViewComponent implements OnInit{
   constructor(
     public dialog: MatDialog,
     public fetchApiData: FetchApiDataService,
+    public snackBar: MatSnackBar,
     private router: Router,
+
     ) { }
 
   ngOnInit(): void {
@@ -29,17 +32,12 @@ export class UserProfileViewComponent implements OnInit{
   
   getUser(): void {
 
-    //retrieved data from localStorage
+    //retrieved data from localStorage + parses the object
     const user = JSON.parse(localStorage.getItem('user') as string);
+    console.log(user, "Parsed JSON Object");
 
-
-    // since I am writing in Typescript, I need to have a check to make sure localStorageUser is not null
+    // helps with error handling with if/else statement
     if(user) {
-      // console.log("Before", localStorageUser, "I'm the object");
-
-      //sets the JSON parsed object equal to variable "user"
-      
-      console.log(user, "Parsed JSON Object");
 
       // setting username from the parsed object to the "this.userData.Username"
       this.userData.Username = user.Username;
@@ -69,7 +67,20 @@ export class UserProfileViewComponent implements OnInit{
   //Delete User from localStorage - NOT WORKING CORRECTLY - needs to come from the fetchApiData file
   deleteUser(): void {
     localStorage.removeItem('user');
-    console.log('User Deleted');
+    localStorage.removeItem('token');
+    console.log('User Cleared from localStorage');
+
+    this.fetchApiData.deleteUser(this.userData.Username).subscribe((resp: any) => {
+      this.userData = resp;
+      console.log('User Deleted', this.userData.Username);
+      this.snackBar.open('Your Account was deleted successfully', 'OK', {
+        duration: 2000
+      });
+
+    
+    });
+
+
     this.router.navigate(['welcome']);
   }
 
