@@ -30,7 +30,7 @@ export class UserProfileViewComponent implements OnInit{
   }
 
   
-  getUser(): void {
+  public getUser(): void {
 
     //retrieved data from localStorage + parses the object
     const user = JSON.parse(localStorage.getItem('user') as string);
@@ -64,25 +64,31 @@ export class UserProfileViewComponent implements OnInit{
     });
   }
 
-  //Delete User from localStorage - NOT WORKING CORRECTLY - needs to come from the fetchApiData file
+  //Delete User's Account
   deleteUser(): void {
     console.log('Delete Button was pressed');
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    console.log('User Cleared from localStorage');
 
     this.fetchApiData.deleteUser(this.userData.Username).subscribe((resp: any) => {
-      this.userData = resp;
-      console.log('User Deleted', this.userData.Username);
+      console.log('User Deleted');
       this.snackBar.open('Your Account was deleted successfully', 'OK', {
         duration: 2000
       });
-
     
-    });
+    localStorage.clear();
+    console.log('User Cleared from localStorage');
+    }, 
+    // error: (error: any) => {
+    //   console.error('Error Status code', error.status, 'Error body is:', error.error);
+    //   this.snackBar.open('Something went wrong; please try again later.', 'OK', {
+    //     duration: 2000
+    //   });
+    
+    //   }
+    
+    );
 
 
     this.router.navigate(['welcome']);
-  }
+  } 
 
 }
