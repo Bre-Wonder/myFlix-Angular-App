@@ -124,9 +124,9 @@ export class FetchApiDataService {
   }
 
   // API update request endpoint to update user
-  updateUser(username: any): Observable<any> {
+  updateUser(userDetails: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.put(apiUrl + '/users/' + username, {
+    return this.http.put(apiUrl + '/users/' + username, userDetails, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
