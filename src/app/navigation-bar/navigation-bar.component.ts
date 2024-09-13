@@ -15,7 +15,10 @@ export class NavigationBarComponent {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     console.log('user successfully logged out');
-    this.router.navigate(['welcome']);
+
+    setTimeout(() => {
+      this.router.navigate(['welcome']);
+    }, 100);   
 
   }
   
