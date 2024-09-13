@@ -124,9 +124,9 @@ export class FetchApiDataService {
   }
 
   // API update request endpoint to update user
-  updateUser(userDetails: any): Observable<any> {
+  updateUser(username: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.put(apiUrl + '/users/' + userDetails.Username, userDetails, {
+    return this.http.put(apiUrl + '/users/' + username, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
@@ -171,12 +171,11 @@ export class FetchApiDataService {
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
     console.error('Some error occurred:', error.error.message);
-    } else {
-     console.error(
+    console.error(
       `Error Status code ${error.status}, ` +
       `Error body is: ${error.error}` );
+    } else {
+     console.log('Everything Okay');
     }
-    return throwError(
-      'Something bad happened; please try again later.');
   }
 }
