@@ -23,44 +23,15 @@ export class UpdateUserComponent implements OnInit {
   
   }
 
-  getUser(): void {
-
-    //retrieved data from localStorage + parses the object
-    const user = JSON.parse(localStorage.getItem('user') as string);
-    console.log(user, "Parsed JSON Object");
-
-    // helps with error handling with if/else statement
-    if(user) {
-
-      // setting username from the parsed object to the "this.userData.Username"
-      this.userData.Username = user.Username;
-      console.log(this.userData.Username, "My Username");
-    
-      //collecting the user data from the API
-      this.fetchApiData.getUser(this.userData.Username).subscribe((resp: any) => {
-        this.userData = resp;
-        console.log("I was called", this.userData.Username)
-      
-      });
-    
-    } else {
-      // error handler
-      console.error('No data in localStorage found');
-    }
-
-}
-
-
-
   updateUser(): void {
     this.fetchApiData.updateUser(this.userData).subscribe((result) => {
-      // localStorage.setItem('user', JSON.stringify(result));
+      localStorage.setItem('user', JSON.stringify(result));
       this.dialogRef.close();
       this.snackBar.open(result, 'User Info Updated Successfully', {
         duration: 200
       });
-      console.log(this.userData.Username);
-      this.getUser();
+      console.log("New Username:", this.userData.Username);
+      // this.getUser();
     }, (error) => {
       this.snackBar.open('Error with updating user info: ' + error, 'OK', { 
         duration: 2000
