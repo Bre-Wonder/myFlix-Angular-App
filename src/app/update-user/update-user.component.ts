@@ -25,13 +25,13 @@ export class UpdateUserComponent implements OnInit {
 
   updateUser(): void {
     this.fetchApiData.updateUser(this.userData).subscribe((result) => {
+      console.log("API Result:", result);
       localStorage.setItem('user', JSON.stringify(result));
       this.dialogRef.close();
       this.snackBar.open(result, 'User Info Updated Successfully', {
         duration: 200
       });
-      console.log("New Username:", this.userData.Username);
-      // this.getUser();
+      console.log("New Email:", this.userData.Email);
     }, (error) => {
       this.snackBar.open('Error with updating user info: ' + error, 'OK', { 
         duration: 2000
