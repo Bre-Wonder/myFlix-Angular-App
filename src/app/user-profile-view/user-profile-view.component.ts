@@ -85,8 +85,8 @@ export class UserProfileViewComponent implements OnInit{
   
 
   //User Add favrotie movie to their profile
-  //#1 Get all the movies
-  //#2 Find out if user is logged in - if not tell user to login
+  
+  
   //#3 Create a users list of favorite movie
   //#4 Display Movie Cards in UI if user has selected a movie
   //#5 Put a message in if the user has not selected any movies.. aka empty array
