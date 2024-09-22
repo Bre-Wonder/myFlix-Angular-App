@@ -115,6 +115,13 @@ export class UserProfileViewComponent implements OnInit{
     localStorage.clear();
     console.log('User Cleared from localStorage');
     }, 
+
+    (error) => {
+      this.snackBar.open('Error with deleting user: ' + error, 'OK', { 
+        duration: 2000
+      });
+    }
+
     // error: (error: any) => {
     //   console.error('Error Status code', error.status, 'Error body is:', error.error);
     //   this.snackBar.open('Something went wrong; please try again later.', 'OK', {
