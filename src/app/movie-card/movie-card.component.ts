@@ -13,6 +13,8 @@ import { MatDialog } from '@angular/material/dialog';
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
   genre: any = "";
+  user: any[] = [];
+  movieId: any = "";
 
   constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog) { }
 
@@ -71,10 +73,44 @@ openGenreInfoDialog(genre: string, description: string): void {
   });
 }
 
-// Adds movie to users favorite list
+// Modifies movie to users favorite list
 // This function needs to create a list attached to the user's token to then render a list in the user profile view
-addFavoriteMovie(): void {
+updateFavoriteMovies(movies: any, user: any): void {
+  this.fetchApiData.addFavoriteMovie(this.user, this.movieId).subscribe((resp: any) => {
+    if (!user) {
+      
+    }
+  })
   console.log("movie successfully added to favorites");
 }
+
+
+
+ // getFavoriteMovies(): void {
+  //   this.fetchApiData.getUser(this.userData.Username).subscribe((resp: any) => {
+  //     if (this.movies.length === 0) {
+  //       this.noMovies = 'You have not selected any movies';
+  //     }, 
+  //     if (!userLgoin) {
+  //       this.userMessage = 'Please login to see movie messages';
+  //     }
+
+  //   });
+
+
+  // }
+
+  
+
+  //User Add favrotie movie to their profile
+  
+  
+  //#3 Create a users list of favorite movie
+  //#4 Display Movie Cards in UI if user has selected a movie
+  //#5 Put a message in if the user has not selected any movies.. aka empty array
+  
+  //Create like button to toggle
+
+
 
 }
