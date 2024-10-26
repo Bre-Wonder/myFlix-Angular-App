@@ -4,6 +4,7 @@ import { MovieSnapshotComponent } from '../movie-snapshot/movie-snapshot.compone
 import { DirectorInfoComponent } from '../director-info/director-info.component';
 import { GenreInfoComponent } from '../genre-info/genre-info.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-movie-card',
@@ -16,7 +17,7 @@ export class MovieCardComponent implements OnInit {
   user: any[] = [];
   movieId: any = "";
 
-  constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog) { }
+  constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog, private snackBar: MatSnackBar) { }
 
 ngOnInit(): void {
   this.getMovies();
@@ -75,30 +76,35 @@ openGenreInfoDialog(genre: string, description: string): void {
 
 // Modifies movie to users favorite list
 // This function needs to create a list attached to the user's token to then render a list in the user profile view
-updateFavoriteMovies(movies: any, user: any): void {
-  this.fetchApiData.addFavoriteMovie(this.user, this.movieId).subscribe((resp: any) => {
-    if (!user) {
-      
+addFavoriteMovies(movieId: string): void {
+  this.fetchApiData.addFavoriteMovie(this.userData.username, movieId).subscribe((resp: any) => {
+    console.log("movie successfully added to favorites");
+    this.userData.favorites.push(movieId);
+    },
+    (error) => {
+      console.error('Error adding movie to favorites:', error);
+      this.snackBar.open('Error. Please try again.');
     }
-  })
-  console.log("movie successfully added to favorites");
+
+    )
+  
 }
 
 
 
- // getFavoriteMovies(): void {
-  //   this.fetchApiData.getUser(this.userData.Username).subscribe((resp: any) => {
-  //     if (this.movies.length === 0) {
-  //       this.noMovies = 'You have not selected any movies';
-  //     }, 
-  //     if (!userLgoin) {
-  //       this.userMessage = 'Please login to see movie messages';
-  //     }
+//  updateFavoriteMovies(): void {
+//     this.fetchApiData.getUser(this.userData.Username).subscribe((resp: any) => {
+//       if (this.movies.length === 0) {
+//         this.noMovies = 'You have not selected any movies';
+//       }, 
+//       if (!userLgoin) {
+//         this.userMessage = 'Please login to see movie messages';
+//       }
 
-  //   });
+//     });
 
 
-  // }
+//   }
 
   
 
