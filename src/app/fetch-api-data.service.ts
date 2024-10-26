@@ -111,9 +111,9 @@ export class FetchApiDataService {
         );
   }
   // API post request endpoint to add a favorite movie for a particular user
-  addFavoriteMovie(username: string, movieId: string): Observable<any> {
+  addFavoriteMovie(username: string, movieTitle: string): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.post(apiUrl + '/users/' + username + '/movies/' + movieId, {}, {
+    return this.http.post(apiUrl + '/users/' + username + '/movies/' + movieTitle, {}, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
