@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MovieSnapshotComponent } from '../movie-snapshot/movie-snapshot.component';
 import { DirectorInfoComponent } from '../director-info/director-info.component';
@@ -15,7 +15,8 @@ export class MovieCardComponent implements OnInit {
   movies: any[] = [];
   genre: any = "";
   user: any[] = [];
-  movieId: any = "";
+
+  @Input() userData = { Username: '', Password: '', Email: '', Birthday: '', favorites: [] as string[] };
 
   constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog, private snackBar: MatSnackBar) { }
 
@@ -76,37 +77,24 @@ openGenreInfoDialog(genre: string, description: string): void {
 
 // Modifies movie to users favorite list
 // This function needs to create a list attached to the user's token to then render a list in the user profile view
-addFavoriteMovies(movieId: string): void {
-  this.fetchApiData.addFavoriteMovie(this.userData.username, movieId).subscribe((resp: any) => {
+addFavoriteMovies(movieTitle: string): void {
+  console.log(movieTitle);
+  this.fetchApiData.addFavoriteMovie(this.userData.Username, movieTitle).subscribe((resp: any) => {
     console.log("movie successfully added to favorites");
-    this.userData.favorites.push(movieId);
+
+    if(!this.userData.favorites) {
+      this.userData.favorites = [];
+    }
+    this.userData.favorites.push(movieTitle);
     },
     (error) => {
       console.error('Error adding movie to favorites:', error);
-      this.snackBar.open('Error. Please try again.');
+      this.snackBar.open('Error. Please try again.', 'OK', { duration: 3000 });
     }
 
     )
   
 }
-
-
-
-//  updateFavoriteMovies(): void {
-//     this.fetchApiData.getUser(this.userData.Username).subscribe((resp: any) => {
-//       if (this.movies.length === 0) {
-//         this.noMovies = 'You have not selected any movies';
-//       }, 
-//       if (!userLgoin) {
-//         this.userMessage = 'Please login to see movie messages';
-//       }
-
-//     });
-
-
-//   }
-
-  
 
   //User Add favrotie movie to their profile
   
