@@ -96,6 +96,14 @@ addFavoriteMovies(movieTitle: string): void {
   
 }
 
+//getting movies removed from the user's favorites list
+// removeFavoritMovies(username: string, movieId: string): void {
+//   this.fetchApiData.deleteFavoriteMovie(this.userData.Username, movieId).subscribe((resp: any) => {
+//     console.log('movie successfully removed');
+//     //needs to reload the list and update local storage, so the UI for that specific user updates. 
+//   })
+// }
+
   //User Add favrotie movie to their profile
   
   
