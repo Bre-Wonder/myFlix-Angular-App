@@ -78,8 +78,23 @@ openGenreInfoDialog(genre: string, description: string): void {
 // Modifies movie to users favorite list
 // This function needs to create a list attached to the user's token to then render a list in the user profile view
 addFavoriteMovies(movieTitle: string): void {
-  console.log(movieTitle);
-  this.fetchApiData.addFavoriteMovie(this.userData.Username, movieTitle).subscribe((resp: any) => {
+
+  //finding the user in the format of a string in the localStorage
+  const user = localStorage.getItem('user');
+
+  if(!user) {
+    console.error('user not found');
+    this.snackBar.open('User not found. Please login', 'OK', {duration: 3000});
+    return;
+  }
+
+  console.log(user, ', the user in localStorage');
+
+  //parse the user string to make the oject equal to a variable. This way the username can be extracted from the currentUser object
+  const currentUser = JSON.parse(user);
+  const username = currentUser.Username;
+
+  this.fetchApiData.addFavoriteMovie(username, movieTitle).subscribe((resp: any) => {
     console.log("movie successfully added to favorites");
 
     if(!this.userData.favorites) {
