@@ -12,7 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UserProfileViewComponent implements OnInit{
 
-  @Input() userData = { Username: 'Please Sign In', Password: '', Email: '', Birthday: '' };
+  @Input() userData = { Username: 'Please Sign In', Password: '', Email: '', Birthday: '', FavoriteMovies: [] };
 
   user: any = {};
   movies: any = [];
@@ -96,15 +96,14 @@ export class UserProfileViewComponent implements OnInit{
       });
     }
 
-    // error: (error: any) => {
-    //   console.error('Error Status code', error.status, 'Error body is:', error.error);
-    //   this.snackBar.open('Something went wrong; please try again later.', 'OK', {
-    //     duration: 2000
-    //   });
-    
-    //   }
     
     );
+
+  
+  // showUserFavorites(): void {
+  //   console.log('Here they are');
+
+  // }
 
 
     this.router.navigate(['welcome']);
