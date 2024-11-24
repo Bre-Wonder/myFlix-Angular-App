@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MovieCardComponent } from '../movie-card/movie-card.component';
 
 @Component({
   selector: 'app-user-profile-view',
@@ -99,10 +100,13 @@ export class UserProfileViewComponent implements OnInit{
     
     );
 
-  
-  // showUserFavorites(): void {
-  //   console.log('Here they are');
-
+  //find user's favortie movies from the user object and display them if user has selected them
+  // displayFavoriteMovie(): void {
+  //   this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+  //     this.movies = resp;
+  //     console.log(this.movies);
+  //     return this.movies;
+  //   });
   // }
 
 
