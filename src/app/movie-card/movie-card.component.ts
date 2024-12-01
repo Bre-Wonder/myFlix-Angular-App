@@ -16,7 +16,9 @@ export class MovieCardComponent implements OnInit {
   genre: any = "";
   user: any[] = [];
 
-  @Input() userData = { Username: '', Password: '', Email: '', Birthday: '', favorites: [] as string[] };
+  @Input() 
+    userData = { Username: '', Password: '', Email: '', Birthday: '', FavoriteMovies: [] as string[] };
+    isFavorite: boolean =  false;
 
   constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog, private snackBar: MatSnackBar) { }
 
@@ -97,10 +99,11 @@ addFavoriteMovies(movieId: string): void {
   this.fetchApiData.addFavoriteMovie(username, movieId).subscribe((resp: any) => {
     console.log("movie successfully added to favorites");
 
-    if(!currentUser.favorites) {
-      currentUser.favorites = [];
+//I'm getting repeat favorite movies    
+    if(!currentUser.FavoriteMovies) {
+      currentUser.FavoriteMovies = [];
     }
-    currentUser.favorites.push(movieId);
+    currentUser.FavoriteMovies.push(movieId);
 
     //updating local storage to update local storage to reflect user adding favorite to movie to array
     localStorage.setItem('user', JSON.stringify(currentUser));
@@ -116,22 +119,58 @@ addFavoriteMovies(movieId: string): void {
   
 }
 
-//getting movies removed from the user's favorites list
-// removeFavoritMovies(username: string, movieId: string): void {
-//   this.fetchApiData.deleteFavoriteMovie(this.userData.Username, movieId).subscribe((resp: any) => {
-//     console.log('movie successfully removed');
-//     //needs to reload the list and update local storage, so the UI for that specific user updates. 
-//   })
-// }
 
-  //User Add favrotie movie to their profile
-  
-  
-  //#3 Create a users list of favorite movie
-  //#4 Display Movie Cards in UI if user has selected a movie
-  //#5 Put a message in if the user has not selected any movies.. aka empty array
-  
-  //Create like button to toggle
+
+//getting movies removed from the user's favorites list
+removeFavoritMovies(movieId: string): void {
+
+  //finding the user in the format of a string in the localStorage
+  const user = localStorage.getItem('user');
+
+  if(!user) {
+    console.error('user not found');
+    this.snackBar.open('User not found. Please login', 'OK', {duration: 3000});
+    return;
+  }
+
+  console.log(user, ', the user in localStorage');
+
+  //parse the user string to make the oject equal to a variable. This way the username can be extracted from the currentUser object
+  const currentUser = JSON.parse(user);
+  const username = currentUser.Username;
+
+  this.fetchApiData.deleteFavoriteMovie(username, movieId).subscribe((resp: any) => {
+    console.log("movie successfully removed from favorites");
+
+    if(currentUser.FavoriteMovies) {
+      currentUser.FavoriteMovies = currentUser.FavoriteMovies.filter((id: string) => id !== movieId);
+    }
+    
+    //updating local storage to update local storage to reflect user adding favorite to movie to array
+    localStorage.setItem('user', JSON.stringify(currentUser));
+    console.log(currentUser);
+    
+    },
+    (error) => {
+      console.error('Error adding movie to favorites:', error);
+      this.snackBar.open('Error. Please try again.', 'OK', { duration: 3000 });
+    }
+
+    )
+
+
+}
+
+  toggleIcon(movieId: string): void {
+    if (this.isFavorite) {
+      this.removeFavoritMovies(movieId);
+    } else {
+      this.addFavoriteMovies(movieId);
+    }
+
+    this.isFavorite = !this.isFavorite;
+  }
+
 
 
 
