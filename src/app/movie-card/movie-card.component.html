@@ -35,11 +35,11 @@
         Summary
         </button>
         <button
-          mat-button
-          matTooltip="Add Movie to Your Favorites"
-          (click)="addFavoriteMovies(movie._id)"
-        >
-          <mat-icon>favorite_border</mat-icon>
+        mat-button
+        matTooltip="{{ isFavorite ? 'Remove Movie from Your Favorites' : 'Add Movie to Your Favorites' }}"
+        (click)="toggleIcon(movie._id)"
+      >
+          <mat-icon>{{isFavorite ? 'favorite' : 'favorite_border' }}</mat-icon>
         </button>        
       </mat-card-actions>
     </mat-grid-list>
