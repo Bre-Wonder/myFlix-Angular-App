@@ -5,6 +5,7 @@ import { DirectorInfoComponent } from '../director-info/director-info.component'
 import { GenreInfoComponent } from '../genre-info/genre-info.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-movie-card',
@@ -18,9 +19,9 @@ export class MovieCardComponent implements OnInit {
 
   @Input() 
     userData = { Username: '', Password: '', Email: '', Birthday: '', FavoriteMovies: [] as string[] };
-    isFavorite: boolean =  false;
+    isFavorite(movieId: string): boolean {return this.userData.FavoriteMovies.includes(movieId);}
 
-  constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog, private snackBar: MatSnackBar, private cdr: ChangeDetectorRef) { }
 
 ngOnInit(): void {
   this.getMovies();
@@ -99,14 +100,15 @@ addFavoriteMovies(movieId: string): void {
   this.fetchApiData.addFavoriteMovie(username, movieId).subscribe((resp: any) => {
     console.log("movie successfully added to favorites");
 
-//I'm getting repeat favorite movies    
-    if(!currentUser.FavoriteMovies) {
-      currentUser.FavoriteMovies = [];
+//Making sure that movie isn't alreay in FavoriteMovies array   
+    if(!currentUser.FavoriteMovies.includes(movieId)) {
+      currentUser.FavoriteMovies.push(movieId);
+      this.cdr.markForCheck();
     }
-    currentUser.FavoriteMovies.push(movieId);
+    
 
     //updating local storage to update local storage to reflect user adding favorite to movie to array
-    localStorage.setItem('user', JSON.stringify(currentUser));
+    // localStorage.setItem('user', JSON.stringify(currentUser));
     console.log(currentUser);
     
     },
@@ -147,7 +149,7 @@ removeFavoritMovies(movieId: string): void {
     }
     
     //updating local storage to update local storage to reflect user adding favorite to movie to array
-    localStorage.setItem('user', JSON.stringify(currentUser));
+    // localStorage.setItem('user', JSON.stringify(currentUser));
     console.log(currentUser);
     
     },
@@ -157,21 +159,22 @@ removeFavoritMovies(movieId: string): void {
     }
 
     )
-
-
 }
 
   toggleIcon(movieId: string): void {
-    if (this.isFavorite) {
+    if (this.isFavorite(movieId)) {
       this.removeFavoritMovies(movieId);
     } else {
       this.addFavoriteMovies(movieId);
     }
 
-    this.isFavorite = !this.isFavorite;
+    const updatedUser = JSON.parse(localStorage.getItem('user') || '{}');
+    this.userData.FavoriteMovies = updatedUser.FavoriteMovies || [];
+    // localStorage.setItem('user', JSON.stringify(updatedUser));
+    console.log(updatedUser);
+
   }
 
-
-
+  
 
 }
