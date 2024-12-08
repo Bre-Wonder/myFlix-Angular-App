@@ -3,7 +3,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { MovieSnapshotComponent } from '../movie-snapshot/movie-snapshot.component';
 import { DirectorInfoComponent } from '../director-info/director-info.component';
 import { GenreInfoComponent } from '../genre-info/genre-info.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ChangeDetectorRef } from '@angular/core';
 
@@ -19,7 +19,11 @@ export class MovieCardComponent implements OnInit {
 
   @Input() 
     userData = { Username: '', Password: '', Email: '', Birthday: '', FavoriteMovies: [] as string[] };
-    isFavorite(movieId: string): boolean {return this.userData.FavoriteMovies.includes(movieId);}
+    isFavorite(movieId: string): boolean {
+      return this.userData.FavoriteMovies.includes(movieId);
+      
+    }
+   
 
   constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog, private snackBar: MatSnackBar, private cdr: ChangeDetectorRef) { }
 
@@ -103,12 +107,16 @@ addFavoriteMovies(movieId: string): void {
 //Making sure that movie isn't alreay in FavoriteMovies array   
     if(!currentUser.FavoriteMovies.includes(movieId)) {
       currentUser.FavoriteMovies.push(movieId);
-      this.cdr.markForCheck();
+      
+    } else {
+      
+      //Lets user know with pop up that movie has already been added to the Favorite Movies list
+      this.snackBar.open('Movie has already been added to favorites', 'OK', {duration: 3000});
     }
     
 
     //updating local storage to update local storage to reflect user adding favorite to movie to array
-    // localStorage.setItem('user', JSON.stringify(currentUser));
+    localStorage.setItem('user', JSON.stringify(currentUser));
     console.log(currentUser);
     
     },
@@ -149,7 +157,7 @@ removeFavoritMovies(movieId: string): void {
     }
     
     //updating local storage to update local storage to reflect user adding favorite to movie to array
-    // localStorage.setItem('user', JSON.stringify(currentUser));
+    localStorage.setItem('user', JSON.stringify(currentUser));
     console.log(currentUser);
     
     },
@@ -168,10 +176,10 @@ removeFavoritMovies(movieId: string): void {
       this.addFavoriteMovies(movieId);
     }
 
-    const updatedUser = JSON.parse(localStorage.getItem('user') || '{}');
-    this.userData.FavoriteMovies = updatedUser.FavoriteMovies || [];
+    // const updatedUser = JSON.parse(localStorage.getItem('user') || '{}');
+    // this.userData.FavoriteMovies = updatedUser.FavoriteMovies || [];
     // localStorage.setItem('user', JSON.stringify(updatedUser));
-    console.log(updatedUser);
+    // console.log("toggleButton", updatedUser);
 
   }
 
