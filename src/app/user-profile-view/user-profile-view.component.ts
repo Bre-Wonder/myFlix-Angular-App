@@ -9,7 +9,7 @@ import { MovieCardComponent } from '../movie-card/movie-card.component';
 @Component({
   selector: 'app-user-profile-view',
   templateUrl: './user-profile-view.component.html',
-  styleUrls: ['./user-profile-view.component.scss']
+  styleUrls: ['./user-profile-view.component.scss'],
 })
 export class UserProfileViewComponent implements OnInit{
 
@@ -19,12 +19,14 @@ export class UserProfileViewComponent implements OnInit{
   movies: any = [];
   noMovies: string = '';
   userMessage: string = '';
+  favoriteMovies = [];
 
   constructor(
     public dialog: MatDialog,
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
     private router: Router,
+    public movieCard: MovieCardComponent,
 
     ) { }
 
