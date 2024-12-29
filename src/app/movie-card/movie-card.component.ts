@@ -20,7 +20,9 @@ export class MovieCardComponent implements OnInit {
   @Input() 
     userData = { Username: '', Password: '', Email: '', Birthday: '', FavoriteMovies: [] as string[] };
     isFavorite(movieId: string): boolean {
-      return this.userData.FavoriteMovies.includes(movieId);
+      const user = localStorage.getItem('user');
+      const currentUser = JSON.parse(user || '');
+      return currentUser.FavoriteMovies.includes(movieId);
       
     }
    
@@ -104,7 +106,7 @@ addFavoriteMovies(movieId: string): void {
   this.fetchApiData.addFavoriteMovie(username, movieId).subscribe((resp: any) => {
     console.log("movie successfully added to favorites");
 
-//Making sure that movie isn't alreay in FavoriteMovies array   
+  //Making sure that movie isn't alreay in FavoriteMovies array   
     if(!currentUser.FavoriteMovies.includes(movieId)) {
       currentUser.FavoriteMovies.push(movieId);
       
