@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Injectable } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MovieSnapshotComponent } from '../movie-snapshot/movie-snapshot.component';
 import { DirectorInfoComponent } from '../director-info/director-info.component';
@@ -6,6 +6,10 @@ import { GenreInfoComponent } from '../genre-info/genre-info.component';
 import { MatDialog, MAT_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ChangeDetectorRef } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
 
 @Component({
   selector: 'app-movie-card',
@@ -177,11 +181,6 @@ removeFavoritMovies(movieId: string): void {
     } else {
       this.addFavoriteMovies(movieId);
     }
-
-    // const updatedUser = JSON.parse(localStorage.getItem('user') || '{}');
-    // this.userData.FavoriteMovies = updatedUser.FavoriteMovies || [];
-    // localStorage.setItem('user', JSON.stringify(updatedUser));
-    // console.log("toggleButton", updatedUser);
 
   }
 
