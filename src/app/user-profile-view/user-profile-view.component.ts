@@ -20,6 +20,7 @@ export class UserProfileViewComponent implements OnInit{
   noMovies: string = '';
   userMessage: string = '';
   favoriteMovies = [];
+  favorites: any = [];
 
   constructor(
     public dialog: MatDialog,
@@ -33,6 +34,7 @@ export class UserProfileViewComponent implements OnInit{
   ngOnInit(): void {
     console.log("Init before get user");
     this.getUser();
+    this.displayFavoriteMovies();
   }
 
   
@@ -102,17 +104,23 @@ export class UserProfileViewComponent implements OnInit{
     
     );
 
+  }
+
   //find user's favortie movies from the user object and display them if user has selected them
-  // displayFavoriteMovie(): void {
-  //   this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-  //     this.movies = resp;
-  //     console.log(this.movies);
-  //     return this.movies;
-  //   });
-  // }
+  public displayFavoriteMovies(): void {
+    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+      this.movies = resp;
+      const user = JSON.parse(localStorage.getItem('user') as string || '{}');
+      const { FavoriteMovies } = user;
+      this.favorites = this.movies.filter((movie: any) =>
+        FavoriteMovies.includes(movie._id)
+      );
+      return this.movies;
+    });
 
-
-    this.router.navigate(['welcome']);
+    // this.router.navigate(['welcome']);
+   
   } 
+  
 
 }
