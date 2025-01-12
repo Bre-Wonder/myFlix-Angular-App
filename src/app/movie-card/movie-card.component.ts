@@ -26,9 +26,9 @@ export class MovieCardComponent implements OnInit {
     isFavorite(movieId: string): boolean {
       const user = localStorage.getItem('user');
       const currentUser = JSON.parse(user || '');
-      return currentUser.FavoriteMovies.includes(movieId);
-      
-    }
+      return currentUser.FavoriteMovies.includes(movieId);     
+    };
+    movie: any;
    
 
   constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog, private snackBar: MatSnackBar, private cdr: ChangeDetectorRef) { }
