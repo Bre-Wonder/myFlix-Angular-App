@@ -1,5 +1,5 @@
 <div class="profile-view">
-  <app-navigation-bar></app-navigation-bar> <!-- Assuming you have a navigation bar component -->
+  <app-navigation-bar></app-navigation-bar>
   <h1
   style="margin-left: 15px;"
   >
@@ -12,7 +12,7 @@
   </h3>
   <div style="margin-left: 15px;">
     <div *ngIf="favorites.length > 0">
-      <app-movie-card *ngFor="let movie of favorites" ></app-movie-card>
+      <app-movie-card *ngFor="let movie of favorites" [movie]="movie"></app-movie-card>
     </div>
     <p *ngIf="favorites.length === 0">Add a Favorite Movie!</p>
   </div>
@@ -34,5 +34,3 @@
   </button>
   
 </div>
-
-<!-- [movie]="movie" -->
