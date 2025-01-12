@@ -54,7 +54,7 @@ const appRoutes: Routes = [
     DirectorInfoComponent,
     GenreInfoComponent,
     MovieViewComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +75,10 @@ const appRoutes: Routes = [
     MatSidenavModule,
     MatListModule,
     MatMenuModule,
-    MatTooltipModule
+    MatTooltipModule,
+  ],
+  exports: [
+    MovieCardComponent
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent]
