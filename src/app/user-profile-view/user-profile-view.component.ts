@@ -16,7 +16,6 @@ export class UserProfileViewComponent implements OnInit{
   @Input() userData = { Username: 'Please Sign In', Password: '', Email: '', Birthday: '', FavoriteMovies: [] };
 
   user: any = {};
-  movies: any = [];
   noMovies: string = '';
   userMessage: string = '';
   favoriteMovies = [];
@@ -65,14 +64,6 @@ export class UserProfileViewComponent implements OnInit{
 
   }
 
-  getMovies(): void {
-    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-        this.movies = resp;
-        console.log(this.movies);
-        return this.movies;
-      });
-    }
-
     
    //Function opens up dialog when the update button is pressed in the user profile view
    openUpdateUserDialog(): void {
@@ -109,13 +100,13 @@ export class UserProfileViewComponent implements OnInit{
   //find user's favortie movies from the user object and display them if user has selected them
   public displayFavoriteMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-      this.movies = resp;
+      // this.movies = resp;
       const user = JSON.parse(localStorage.getItem('user') as string || '{}');
       const { FavoriteMovies } = user;
-      this.favorites = this.movies.filter((movie: any) =>
+      this.favorites = resp.filter((movie: any) =>
         FavoriteMovies.includes(movie._id)
       );
-      return this.movies;
+   
     });
 
     // this.router.navigate(['welcome']);
