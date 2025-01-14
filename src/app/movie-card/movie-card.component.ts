@@ -28,7 +28,7 @@ export class MovieCardComponent implements OnInit {
       const currentUser = JSON.parse(user || '');
       return currentUser.FavoriteMovies.includes(movieId);     
     };
-    movie: any;
+  @Input() movie: any;
    
 
   constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog, private snackBar: MatSnackBar, private cdr: ChangeDetectorRef) { }
