@@ -100,16 +100,15 @@ export class UserProfileViewComponent implements OnInit{
   //find user's favortie movies from the user object and display them if user has selected them
   public displayFavoriteMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-      // this.movies = resp;
       const user = JSON.parse(localStorage.getItem('user') as string || '{}');
       const { FavoriteMovies } = user;
       this.favorites = resp.filter((movie: any) =>
         FavoriteMovies.includes(movie._id)
       );
+      console.log(this.favorites);
    
     });
 
-    // this.router.navigate(['welcome']);
    
   } 
   
