@@ -12,7 +12,7 @@
   </h3>
   <div style="margin-left: 15px;">
     <div *ngIf="favorites.length > 0">
-      <app-movie-card *ngFor="let movie of favorites" [movie]="movie"></app-movie-card>
+      <app-movie-card *ngFor="let movie of favorites; let i=index;" [movie]="movie"></app-movie-card>
     </div>
     <p *ngIf="favorites.length === 0">Add a Favorite Movie!</p>
   </div>
