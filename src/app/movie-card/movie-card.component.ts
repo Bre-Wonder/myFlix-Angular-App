@@ -34,16 +34,16 @@ export class MovieCardComponent implements OnInit {
   constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog, private snackBar: MatSnackBar, private cdr: ChangeDetectorRef) { }
 
 ngOnInit(): void {
-  this.getMovies();
+  // this.getMovies();
 }
 
-getMovies(): void {
-  this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-      this.movies = resp;
-      console.log(this.movies);
-      return this.movies;
-    });
-  }
+// getMovies(): void {
+//   this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+//       this.movies = resp;
+//       console.log(this.movies);
+//       return this.movies;
+//     });
+//   }
 
 // Opens the dialog for the discription of the movie
 openMovieSnapshotDialog(movieTitle: string, description: string): void {
