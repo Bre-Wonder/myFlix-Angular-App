@@ -17,7 +17,6 @@ import { ChangeDetectorRef } from '@angular/core';
   styleUrls: ['./movie-card.component.scss']
 })
 export class MovieCardComponent implements OnInit {
-  movies: any[] = [];
   genre: any = "";
   user: any[] = [];
 
