@@ -1,5 +1,15 @@
-// style="flex: 1 1 calc(33% - 32px); max-width: 300px;" 
-// style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: left;"
+.movie-view {
+  background-color: #8C4256;
+}
+
+.card-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: flex-start;
+  padding: 16px;
+  box-sizing: border-box;
+}
 
 .movie-layout {
   flex: 1 1 calc(33% - 32px);
@@ -9,3 +19,5 @@
   gap: 16px;
   justify-content: left;
 }
+
+
