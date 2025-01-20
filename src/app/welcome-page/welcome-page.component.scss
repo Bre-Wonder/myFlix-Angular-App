@@ -3,6 +3,21 @@
   display: block;
   min-height: 100%;
   padding-top: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  height: 100vh;
+  text-align: center;
 }
 
+.welcome-page h1 {
+  margin-bottom: 10px;
+}
+
+.welcome-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
 
