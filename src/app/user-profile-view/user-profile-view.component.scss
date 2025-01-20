@@ -1,0 +1,8 @@
+.movie-layout {
+    flex: 1 1 calc(33% - 32px);
+    max-width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: left;
+  }
