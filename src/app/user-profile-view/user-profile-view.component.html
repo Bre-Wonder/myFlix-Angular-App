@@ -11,7 +11,7 @@
     Your Favorite Movie List:
   </h3>
   <div style="margin-left: 15px;">
-    <div *ngIf="favorites.length > 0">
+    <div *ngIf="favorites.length > 0" class="card-layout">
       <app-movie-card *ngFor="let movie of favorites; let i=index;" [movie]="movie" class="movie-layout"></app-movie-card>
     </div>
     <p *ngIf="favorites.length === 0">Add a Favorite Movie!</p>
@@ -19,14 +19,14 @@
   <button
   mat-raised-button
   (click)="openUpdateUserDialog()"
-  style="margin-right: 10px; margin-left: 15px;"
+  class="button-style-one"
   color="primary"
   >
   Update
   </button>
   <button
     mat-raised-button
-    style="margin-right: 10px;"
+    class="button-style-two"
     color="primary"
     (click)="deleteUser()"
   >
