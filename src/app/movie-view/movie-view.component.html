@@ -1,5 +1,7 @@
 <div class="movie-view">
   <app-navigation-bar></app-navigation-bar>
-  <app-movie-card *ngFor="let movie of movies; let i=index;"  [movie]="movie" class="movie-layout"></app-movie-card>
+  <div class="card-layout">
+    <app-movie-card *ngFor="let movie of movies; let i=index;"  [movie]="movie" class="movie-layout"></app-movie-card>
+  </div>
 </div>
   
