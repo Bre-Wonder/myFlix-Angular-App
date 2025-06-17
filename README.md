@@ -5,7 +5,7 @@ This is a client-side application built in Angular to display movie and profile 
 
 
 ### Technologies Used: 
-Angular | Typescript | Angular Materials
+Angular | Typescript | Angular Materials | Copilot to generate documentation
 
 ### How to start up this project?
 
