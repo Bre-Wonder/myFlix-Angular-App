@@ -11,6 +11,11 @@ import { ChangeDetectorRef } from '@angular/core';
   providedIn: 'root'
 })
 
+/**
+ * MovieCardComponent is responsible for displaying individual movie cards,
+ * handling user interactions like viewing movie details and managing favorite movies.
+ */
+
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
@@ -20,31 +25,45 @@ export class MovieCardComponent implements OnInit {
   genre: any = "";
   user: any[] = [];
 
+
+  /**
+   * The user data passed from the parent component, including user details and favorite movies.
+   */
+
   @Input() 
     userData = { Username: '', Password: '', Email: '', Birthday: '', FavoriteMovies: [] as string[] };
+
+   /**
+    * Checks if a given movie is in the user's list of favorite movies.
+    * @param movieId The ID of the movie.
+    * @returns `true` if the movie is a favorite, otherwise `false`.
+    */
     isFavorite(movieId: string): boolean {
       const user = localStorage.getItem('user');
       const currentUser = JSON.parse(user || '');
       return currentUser.FavoriteMovies.includes(movieId);     
     };
+
+  /**
+   * The movie object to display in the card.
+   */
   @Input() movie: any;
    
 
   constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog, private snackBar: MatSnackBar, private cdr: ChangeDetectorRef) { }
 
+/**
+ * Angular lifecycle hook called after component initialization.
+ */
+
 ngOnInit(): void {
-  // this.getMovies();
 }
 
-// getMovies(): void {
-//   this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-//       this.movies = resp;
-//       console.log(this.movies);
-//       return this.movies;
-//     });
-//   }
-
-// Opens the dialog for the discription of the movie
+/**
+ * Opens a modal dialog displaying a snapshot of the selected movie.
+ * @param movieTitle The title of the movie.
+ * @param description A short description of the movie.
+ */
 openMovieSnapshotDialog(movieTitle: string, description: string): void {
   this.dialog.open(MovieSnapshotComponent, {
     data: {
@@ -56,7 +75,13 @@ openMovieSnapshotDialog(movieTitle: string, description: string): void {
   });
 }
 
-// Opens the dialog about information for the director
+/**
+ * Opens a modal dialog with detailed information about the movie’s director.
+ * @param director The director’s name.
+ * @param bio The director’s biography.
+ * @param birth The director’s birth date.
+ * @param death The director’s death date.
+ */
 openDirectorInfoDialog(
   director: string,
   bio: string,
@@ -75,7 +100,11 @@ openDirectorInfoDialog(
     });
 }
 
-// Opens the dialog for the genre of the movie
+/**
+ * Opens a modal dialog with information about the genre of the movie.
+ * @param genre The genre name.
+ * @param description The genre description.
+ */
 openGenreInfoDialog(genre: string, description: string): void {
   this.dialog.open(GenreInfoComponent, {
     data: {
@@ -87,8 +116,12 @@ openGenreInfoDialog(genre: string, description: string): void {
   });
 }
 
-// Modifies movie to users favorite list
-// This function needs to create a list attached to the user's token to then render a list in the user profile view
+/**
+ * Adds a movie to the user's list of favorites and updates local storage.
+ * This function needs to create a list attached to the user's token to then render a list in the user profile view
+ * @param movieId The ID of the movie to add.
+ * 
+ */
 addFavoriteMovies(movieId: string): void {
 
   //finding the user in the format of a string in the localStorage
@@ -136,7 +169,10 @@ addFavoriteMovies(movieId: string): void {
 
 
 
-//getting movies removed from the user's favorites list
+/**
+ * Removes a movie from the user's list of favorites and updates local storage.
+ * @param movieId The ID of the movie to remove.
+ */
 removeFavoritMovies(movieId: string): void {
 
   //finding the user in the format of a string in the localStorage
@@ -173,7 +209,10 @@ removeFavoritMovies(movieId: string): void {
 
     )
 }
-
+  /**
+   * Toggles a movie in and out of the user's favorites based on current state.
+   * @param movieId The ID of the movie.
+   */
   toggleIcon(movieId: string): void {
     if (this.isFavorite(movieId)) {
       this.removeFavoritMovies(movieId);
