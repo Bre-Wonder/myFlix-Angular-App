@@ -9,9 +9,26 @@ Angular | Typescript | Angular Materials | Copilot to generate documentation
 
 ### How to start up this project?
 
+First check to see if Angular is installed by running this command:
+`ng --version`
+
+The next step is making sure that Angular is running on at least version 9. You can use the following command to update your version of Angular:
+`npm install -g @angular/cli@latest`
+(you can check to make sure your version is updated by using the command in the previous instruction step)
+
+If you need to install angular, run this command:
+`npm install -g @angular/cli`
+
+Now its time to create your app. Run this command in your terminal to create your new app:
+`ng new myFlix-Angular-App` 
+(note: you can replace myFlix-Angular-App with whatever you would like to name it; You can press `y` for yest when the app creation asks about adding routes)
+
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+To learn more about building components and all other part of Angular see their documentation at: `https://angular.dev/`
+
 
 ### API Used:
 The API used for this project was a REST API that I built through coursework in Career Foundry using Express and Node.js. I had created endpoints specifically designed for this React App. You can see the code for the API in GitHub under movie_api. 
